@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { MediumGray } from '../lib';
+import { MediumGray, omdb } from '../lib';
+import useDebounce from '../hooks/useDebounce';
 
 const StyledSearchWrapper = styled.div`
   display: flex;
@@ -32,6 +34,27 @@ const StyledSearch = styled.input`
 const Search = () => {
   const [searching, setSearching] = useState(false);
   const [query, setQuery] = useState('');
+  const debouncedSearchTerm = useDebounce(query, 500);
+  const [results, setResults] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    // if debouncedSearch term exists, user has not typed in the last 500ms
+    if (debouncedSearchTerm) {
+      const searchUrl = `${omdb.HOSTNAME}?apikey=${process.env.REACT_APP_OMDB_API_KEY}&s=${debouncedSearchTerm}`;
+
+      axios.get(searchUrl)
+        .then((res) => {
+          setResults(res.data.Search);
+          setSearching(false);
+        })
+        .catch((err) => {
+          setSearching(false);
+          setError(err.response.data.message);
+        });
+    }
+    // Only call effect if debounced search term or current page changes
+  }, [debouncedSearchTerm]);
 
   const changeQuery = (value) => {
     setQuery(value);
