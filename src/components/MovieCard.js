@@ -1,7 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAward } from '@fortawesome/free-solid-svg-icons';
 
 const StyledCard = styled.div`
+  position: relative;
   height: 223px;
   width: 150px;
   background: ${props => `linear-gradient(to bottom, transparent 0%, black 100%), url(${props.url})`};
@@ -18,28 +21,28 @@ const StyledCard = styled.div`
   }
 `;
 
-const StyledTitle = styled.p`
-  margin: 0.5rem;
-  font-size: 20px;
-  text-align: center;
+const StyledIcon = styled(FontAwesomeIcon)`
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+  font-size: 25px;
   color: white;
-`
+`;
 
-const StyledYear = styled.p`
+const StyledText = styled.p`
   margin: 0.5rem;
-  font-size: 15px;
+  font-size: ${props => props.title ? '20px' : '15px'};
   text-align: center;
   color: white;
 `
 
 const MovieCard = ({ movie, nominateMovie }) => {
   return (
-    <StyledCard onClick={() => nominateMovie(movie)} url={movie.Poster}>
-      {/* <StyledOverlay> */}
-        {/* <img src={movie.Poster} alt={movie.Title}/> */}
-      {/* </StyledOverlay> */}
-      <StyledTitle>{movie.Title}</StyledTitle>
-      <StyledYear>{movie.Year}</StyledYear>
+    <StyledCard url={movie.Poster}>
+      <StyledIcon icon={faAward} onClick={() => nominateMovie(movie)}/>
+      <StyledText title>{movie.Title}</StyledText>
+      <StyledText>{movie.Year}</StyledText>
     </StyledCard>
   );
 }
