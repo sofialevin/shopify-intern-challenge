@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { MediumGray, omdb } from '../lib';
 import useDebounce from '../hooks/useDebounce';
+import ResultsList from './ResultsList';
 
 const StyledSearchWrapper = styled.div`
   display: flex;
@@ -45,12 +46,17 @@ const Search = () => {
 
       axios.get(searchUrl)
         .then((res) => {
-          setResults(res.data.Search);
+          if (res.data.Response === 'True') {
+            setResults(res.data.Search);
+          } else {
+            setError(res.data.Error);
+          }
           setSearching(false);
         })
         .catch((err) => {
+          console.log(err)
           setSearching(false);
-          setError(err.response.data.message);
+          
         });
     }
     // Only call effect if debounced search term or current page changes
@@ -61,8 +67,9 @@ const Search = () => {
   };
 
   return (
-    <StyledSearchWrapper>
-      <StyledIcon icon={searching ? faSpinner : faSearch} spin={searching} />
+    <section>
+      <StyledSearchWrapper>
+        <StyledIcon icon={searching ? faSpinner : faSearch} spin={searching} />
         <StyledSearch
           type="text"
           name="query"
@@ -71,6 +78,9 @@ const Search = () => {
           onChange={(e) => changeQuery(e.target.value)}
         />
       </StyledSearchWrapper>
+      <ResultsList results={results} />
+    </section>
+   
   );
 }
  
