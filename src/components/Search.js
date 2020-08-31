@@ -37,32 +37,33 @@ const Search = () => {
   const [query, setQuery] = useState('');
   const debouncedSearchTerm = useDebounce(query, 500);
   const [results, setResults] = useState([]);
-  const [error, setError] = useState(null);
+  const [message, setMessage] = useState(null);
 
   useEffect(() => {
     // if debouncedSearch term exists, user has not typed in the last 500ms
     if (debouncedSearchTerm) {
-      const searchUrl = `${omdb.HOSTNAME}?apikey=${process.env.REACT_APP_OMDB_API_KEY}&s=${debouncedSearchTerm}`;
+      const searchUrl = `${omdb.HOSTNAME}?apikey=${process.env.REACT_APP_OMDB_API_KEY}&s=${debouncedSearchTerm}&r=json`;
 
       axios.get(searchUrl)
         .then((res) => {
           if (res.data.Response === 'True') {
             setResults(res.data.Search);
           } else {
-            setError(res.data.Error);
+            setMessage(res.data.Error);
+            setResults([]);
           }
           setSearching(false);
         })
-        .catch((err) => {
-          console.log(err)
+        .catch(() => {
+          setMessage('An unexpected error occured.')
           setSearching(false);
-          
         });
     }
     // Only call effect if debounced search term or current page changes
   }, [debouncedSearchTerm]);
 
   const changeQuery = (value) => {
+    setMessage(null);
     setQuery(value);
   };
 
@@ -78,6 +79,7 @@ const Search = () => {
           onChange={(e) => changeQuery(e.target.value)}
         />
       </StyledSearchWrapper>
+      {message && <p>{message}</p>}
       <ResultsList results={results} />
     </section>
    
