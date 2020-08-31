@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { maxAppWidth, LightGray } from './lib';
 import Search from './components/Search';
+import ResultsList from './components/ResultsList';
+import NominatedList from './components/NominatedList';
 
 const AppContainer = styled.div`
   display: flex;
@@ -18,10 +20,27 @@ const Main = styled.div`
 `
 
 function App() {
+  const [results, setResults] = useState([]);
+  const [nominations, setNominations] = useState([]);
+
+  const addResults = (results) => {
+    setResults(results)
+  }
+
+  const nominateMovie = (movie) => {
+    setNominations([...nominations, movie])
+  }
+
+  const unNominateMovie = (id) => {
+    setNominations(nominations.filter((movie) => movie.id !== id))
+  }
+
   return (
     <AppContainer>
       <Main>
-        <Search />
+        <Search addResults={addResults} />
+        <ResultsList nominateMovie={nominateMovie} results={results}/>
+        <NominatedList nominations={nominations} unNominateMovie={unNominateMovie} />
       </Main>
     </AppContainer>
   );

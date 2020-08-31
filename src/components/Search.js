@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { MediumGray, omdb } from '../lib';
 import useDebounce from '../hooks/useDebounce';
-import ResultsList from './ResultsList';
 
 const StyledSearchWrapper = styled.div`
   display: flex;
@@ -32,11 +31,10 @@ const StyledSearch = styled.input`
   padding-left: 3rem;
 `;
 
-const Search = () => {
+const Search = ({ addResults }) => {
   const [searching, setSearching] = useState(false);
   const [query, setQuery] = useState('');
   const debouncedSearchTerm = useDebounce(query, 500);
-  const [results, setResults] = useState([]);
   const [message, setMessage] = useState(null);
 
   useEffect(() => {
@@ -47,10 +45,10 @@ const Search = () => {
       axios.get(searchUrl)
         .then((res) => {
           if (res.data.Response === 'True') {
-            setResults(res.data.Search);
+            addResults(res.data.Search);
           } else {
             setMessage(res.data.Error);
-            setResults([]);
+            addResults([]);
           }
           setSearching(false);
         })
@@ -60,7 +58,7 @@ const Search = () => {
         });
     }
     // Only call effect if debounced search term or current page changes
-  }, [debouncedSearchTerm]);
+  }, [debouncedSearchTerm, addResults]);
 
   const changeQuery = (value) => {
     setMessage(null);
@@ -80,7 +78,6 @@ const Search = () => {
         />
       </StyledSearchWrapper>
       {message && <p>{message}</p>}
-      <ResultsList results={results} />
     </section>
    
   );
