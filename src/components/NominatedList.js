@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import MovieCard from './MovieCard';
-import { cardWidth, gutter } from '../lib';
+import { cardWidth, gutter, MediumBlue } from '../lib';
 
 const StyledDiv = styled.div`
   display: flex;
@@ -21,7 +21,7 @@ const StyledEmptySlot = styled.div`
   align-items: center;
   justify-content: center;
   color: white;
-  background-color: #1C3F52;
+  background-color: ${MediumBlue};
   margin: 5px ${gutter}px;
   border-radius: 2px;
   font-size: 40px;
