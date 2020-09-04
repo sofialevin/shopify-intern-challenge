@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { MediumGray, omdb } from '../lib';
+import { MediumGray, omdb, gutter } from '../lib';
 import useDebounce from '../hooks/useDebounce';
 
 const StyledSearchWrapper = styled.div`
@@ -13,6 +13,7 @@ const StyledSearchWrapper = styled.div`
   align-items: center;
   font-size: 1.5rem;
   position: relative;
+  margin: 0 ${gutter}px;
 `;
 
 const StyledIcon = styled(FontAwesomeIcon)`
