@@ -7,10 +7,15 @@ const StyledDiv = styled.div`
   flex-wrap: wrap;
 `
 
+const StyledH2 = styled.h2`
+  font-family: 'Poiret One', cursive;
+  color: white;
+`
+
 const NominatedList = ({ nominations, handleNomination }) => {
   return (
     <section>
-      <h2>Nominated Movies</h2>
+      <StyledH2>Nominated Movies</StyledH2>
       <StyledDiv>
         {
           nominations.map((movie) => <MovieCard key={movie.imdbID} movie={movie} handleNomination={handleNomination} nominated/>)

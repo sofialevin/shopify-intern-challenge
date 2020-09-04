@@ -5,8 +5,8 @@ import { faAward } from '@fortawesome/free-solid-svg-icons';
 
 const StyledCard = styled.div`
   position: relative;
-  height: 223px;
-  width: 150px;
+  height: 150px;
+  width: 100px;
   background: ${props => `linear-gradient(to bottom, transparent 0%, black 100%), url(${props.url})`};
   background-size: cover;
   display: flex;
@@ -33,7 +33,7 @@ const StyledIcon = styled(FontAwesomeIcon)`
 
 const StyledText = styled.p`
   margin: 0.5rem;
-  font-size: ${props => props.title ? '20px' : '15px'};
+  font-size: ${props => props.title ? '18px' : '13px'};
   text-align: center;
   color: white;
 `

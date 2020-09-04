@@ -27,7 +27,7 @@ const StyledSearch = styled.input`
   font-weight: 500;
   color: ${MediumGray};
   width: 100%;
-  padding: 1rem;
+  padding: 0.8rem;
   padding-left: 3rem;
 `;
 
