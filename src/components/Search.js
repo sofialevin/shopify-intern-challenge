@@ -32,11 +32,10 @@ const StyledSearch = styled.input`
   padding-left: 3rem;
 `;
 
-const Search = ({ addResults }) => {
+const Search = ({ handleResults, handleMessage }) => {
   const [searching, setSearching] = useState(false);
   const [query, setQuery] = useState('');
   const debouncedSearchTerm = useDebounce(query, 500);
-  const [message, setMessage] = useState(null);
 
   useEffect(() => {
     // if debouncedSearch term exists, user has not typed in the last 500ms
@@ -47,23 +46,23 @@ const Search = ({ addResults }) => {
       axios.get(searchUrl)
         .then((res) => {
           if (res.data.Response === 'True') {
-            addResults(res.data.Search);
+            handleResults(res.data.Search);
           } else {
-            setMessage(res.data.Error);
-            addResults([]);
+            handleMessage(res.data.Error);
+            handleResults([]);
           }
           setSearching(false);
         })
         .catch(() => {
-          setMessage('An unexpected error occured.')
+          handleMessage('An unexpected error occured.')
           setSearching(false);
         });
     }
     // Only call effect if debounced search term or current page changes
-  }, [debouncedSearchTerm, addResults]);
+  }, [debouncedSearchTerm, handleResults, handleMessage]);
 
   const changeQuery = (value) => {
-    setMessage(null);
+    handleMessage(null);
     setQuery(value);
   };
 
@@ -79,7 +78,6 @@ const Search = ({ addResults }) => {
           onChange={(e) => changeQuery(e.target.value)}
         />
       </StyledSearchWrapper>
-      {message && <p>{message}</p>}
     </section>
    
   );

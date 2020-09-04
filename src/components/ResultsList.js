@@ -10,6 +10,8 @@ const StyledSection = styled.section`
   margin-top: 15px;
   min-height: 320px;
   justify-content: center;
+  flex-direction: column;
+  position: relative;
 `
 
 const StyledEmptyState = styled.div`
@@ -20,12 +22,22 @@ const StyledEmptyState = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-
 `
 
-const ResultsList = ({ results, handleNomination, nominatedIds }) => {
+const StyledMessage = styled.p`
+  color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  text-align: center;
+`
+
+const ResultsList = ({ results, handleNomination, nominatedIds, message }) => {
   return (
     <StyledSection>
+      {message && <StyledMessage>{message}</StyledMessage>}
       {
         results.length > 0
         ? results.map((movie) => <MovieCard key={movie.imdbID} movie={movie} handleNomination={handleNomination} nominated={nominatedIds.has(movie.imdbID)} disabled={nominatedIds.has(movie.imdbID)} />)
