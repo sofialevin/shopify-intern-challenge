@@ -1,19 +1,16 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import styled from 'styled-components';
-import { maxAppWidth, gutter } from './lib';
+import { maxAppWidth, gutter, Amber } from './lib';
 import Search from './components/Search';
 import ResultsList from './components/ResultsList';
 import NominatedList from './components/NominatedList';
 import Notification from './components/Notification';
 
 const AppContainer = styled.div`
-  border: 3px solid #b6a644;
+  border: 3px solid ${Amber};
   margin: 20px 40px;
   height: calc(100vh - 46px);
   display: flex;
-  /* flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start; */
   @media (min-width: 768px) {
     /* justify-content: center; */
   }
@@ -23,7 +20,7 @@ const AppContainer = styled.div`
   &:after {
     content: "";
     margin: 20px;
-    border: 3px solid #b6a644;
+    border: 3px solid ${Amber};
     display: block;
     position: absolute;
     top: 20px;
@@ -52,7 +49,6 @@ function App() {
   const [results, setResults] = useState([]);
   const [nominations, setNominations] = useState([]);
   const [showNotification, setShowNotification] = useState(false);
-  const [nominationSlots, setNominationSlots] = useState(5);
 
   const addResults = useCallback((results) => setResults(results), []);
 
@@ -78,7 +74,7 @@ function App() {
         <StyledH1>The Shoppies</StyledH1>
         <Search addResults={addResults} />
         <ResultsList handleNomination={handleNomination} results={results} nominatedIds={new Set(nominations.map((nomination) => nomination.imdbID))}/>
-        <NominatedList nominations={nominations} handleNomination={handleNomination} nominationSlots={nominationSlots} />
+        <NominatedList nominations={nominations} handleNomination={handleNomination} />
       </Main>
     </AppContainer>
   );

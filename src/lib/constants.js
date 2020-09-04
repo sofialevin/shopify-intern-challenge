@@ -8,3 +8,5 @@ export const maxAppWidth = (cardWidth + gutter * 2) * 5;
 export const omdb = {
   HOSTNAME: 'http://www.omdbapi.com/',
 }
+
+export const nominationSlots = 5;

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import MovieCard from './MovieCard';
-import { cardWidth, gutter, MediumBlue } from '../lib';
+import { cardWidth, gutter, MediumBlue, nominationSlots } from '../lib';
 
 const StyledDiv = styled.div`
   display: flex;
@@ -28,7 +28,7 @@ const StyledEmptySlot = styled.div`
   font-family: 'Poiret One', cursive;
 `
 
-const NominatedList = ({ nominations, handleNomination, nominationSlots }) => {
+const NominatedList = ({ nominations, handleNomination }) => {
   return (
     <section>
       <StyledH2>Nominated Movies</StyledH2>
