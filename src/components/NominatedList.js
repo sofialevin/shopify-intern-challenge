@@ -7,13 +7,13 @@ const StyledDiv = styled.div`
   flex-wrap: wrap;
 `
 
-const NominatedList = ({ nominations }) => {
+const NominatedList = ({ nominations, handleNomination }) => {
   return (
     <section>
       <h2>Nominated Movies</h2>
       <StyledDiv>
         {
-          nominations.map((movie) => <MovieCard key={movie.imdbID} movie={movie}>Test</MovieCard>)
+          nominations.map((movie) => <MovieCard key={movie.imdbID} movie={movie} handleNomination={handleNomination} nominated/>)
         }
       </StyledDiv>
     </section>

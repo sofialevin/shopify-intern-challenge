@@ -18,7 +18,8 @@ const StyledCard = styled.div`
   cursor: pointer;
   :hover {
     box-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.16), 0 3px 6px 0 rgba(0, 0, 0, 0.12), 0 5px 12px 4px rgba(0, 0, 0, 0.09);
-  }
+  };
+  opacity: ${props => props.disabled ? '0.5' : '1'};
 `;
 
 const StyledIcon = styled(FontAwesomeIcon)`
@@ -27,7 +28,7 @@ const StyledIcon = styled(FontAwesomeIcon)`
   right: 0;
   margin: 10px;
   font-size: 25px;
-  color: white;
+  color: ${props => props.nominated ? '#ffd43b' : 'white'};
 `;
 
 const StyledText = styled.p`
@@ -37,11 +38,11 @@ const StyledText = styled.p`
   color: white;
 `
 
-const MovieCard = ({ movie, nominateMovie }) => {
+const MovieCard = ({ movie, handleNomination, nominated, disabled }) => {
   return (
-    <StyledCard url={movie.Poster}>
-      <StyledIcon icon={faAward} onClick={() => nominateMovie(movie)}/>
-      <StyledText title>{movie.Title}</StyledText>
+    <StyledCard url={movie.Poster} nominated={nominated} disabled={disabled} >
+      <StyledIcon icon={faAward} onClick={() => handleNomination(movie, nominated)} nominated={nominated} />
+      <StyledText title={true}>{movie.Title}</StyledText>
       <StyledText>{movie.Year}</StyledText>
     </StyledCard>
   );

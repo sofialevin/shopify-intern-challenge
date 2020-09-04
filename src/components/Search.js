@@ -42,6 +42,7 @@ const Search = ({ addResults }) => {
     if (debouncedSearchTerm) {
       const searchUrl = `${omdb.HOSTNAME}?apikey=${process.env.REACT_APP_OMDB_API_KEY}&s=${debouncedSearchTerm}&r=json`;
 
+      setSearching(true);
       axios.get(searchUrl)
         .then((res) => {
           if (res.data.Response === 'True') {
