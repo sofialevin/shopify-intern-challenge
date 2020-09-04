@@ -22,7 +22,9 @@ const StyledCard = styled.div`
   opacity: ${props => props.disabled ? '0.5' : '1'};
 `;
 
-const StyledIcon = styled(FontAwesomeIcon)`
+const StyledButton = styled.button`
+  background-color: transparent;
+  border: none;
   position: absolute;
   cursor: pointer;
   top: -15px;
@@ -32,9 +34,16 @@ const StyledIcon = styled(FontAwesomeIcon)`
   color: ${props => props.nominated ? '#ffd43b' : 'white'};
 `;
 
-const StyledText = styled.p`
+const StyledTitle = styled.p`
+  margin: 0.2rem;
+  font-size: 18px;
+  text-align: center;
+  color: white;
+`
+
+const StyledYear = styled.p`
   margin: 0.5rem;
-  font-size: ${props => props.title ? '18px' : '13px'};
+  font-size: 13px;
   text-align: center;
   color: white;
 `
@@ -42,9 +51,11 @@ const StyledText = styled.p`
 const MovieCard = ({ movie, handleNomination, nominated, disabled }) => {
   return (
     <StyledCard url={movie.Poster} nominated={nominated} disabled={disabled} >
-      <StyledIcon icon={faAward} onClick={() => handleNomination(movie, nominated)} nominated={nominated} />
-      <StyledText title={true}>{movie.Title}</StyledText>
-      <StyledText>{movie.Year}</StyledText>
+      <StyledButton type="button" onClick={() => handleNomination(movie, nominated)} nominated={nominated}>
+        <FontAwesomeIcon icon={faAward} />
+      </StyledButton>
+      <StyledTitle>{movie.Title}</StyledTitle>
+      <StyledYear>{movie.Year}</StyledYear>
     </StyledCard>
   );
 }
