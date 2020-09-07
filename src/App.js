@@ -9,15 +9,15 @@ import Notification from './components/Notification';
 const AppContainer = styled.div`
   border: 3px solid ${Amber};
   margin: 20px 40px;
-  height: calc(100vh - 46px);
+  height: 100%;
   display: flex;
-  @media (min-width: 768px) {
-    /* justify-content: center; */
+  @media (max-width: 750px) {
+    text-align: center
   }
   @media (min-width: 768px) and (max-height: 520px) {
     /* justify-content: flex-start; */
   }
-  &:after {
+  /* &:after {
     content: "";
     margin: 20px;
     border: 3px solid ${Amber};
@@ -27,7 +27,20 @@ const AppContainer = styled.div`
     left: 0;
     right: 0;
     bottom: 20px;
+    height: 100%;
   }
+  @media (max-width: 750px) {
+    text-align: center
+  } */
+`;
+
+const AppContainer2 = styled.div`
+    margin: 20px;
+    border: 3px solid ${Amber};
+    width: calc(100% + 60px);
+    height: 100%;
+    margin-left: -30px;
+    margin-right: -30px;
 `;
 
 const Main = styled.div`
@@ -72,6 +85,7 @@ function App() {
 
   return (
     <AppContainer>
+      <AppContainer2>
       <Main>
         {showNotification ? <Notification /> : null}
         <StyledH1>The Shoppies</StyledH1>
@@ -79,6 +93,7 @@ function App() {
         <ResultsList handleNomination={handleNomination} results={results} nominatedIds={new Set(nominations.map((nomination) => nomination.imdbID))} message={message}/>
         <NominatedList nominations={nominations} handleNomination={handleNomination} />
       </Main>
+      </AppContainer2>
     </AppContainer>
   );
 }

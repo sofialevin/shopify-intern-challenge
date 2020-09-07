@@ -6,6 +6,7 @@ import { cardWidth, gutter, MediumBlue, nominationSlots } from '../lib';
 const StyledDiv = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 `
 
 const StyledH2 = styled.h2`
@@ -26,6 +27,15 @@ const StyledEmptySlot = styled.div`
   border-radius: 2px;
   font-size: 40px;
   font-family: 'Poiret One', cursive;
+  @media (max-width: 750px) {
+    width: 145px;
+    height: 225px;
+    margin: 5px;
+    :first-child {
+      width: 300px;
+      height: 450px;
+    }
+  }
 `
 
 const NominatedList = ({ nominations, handleNomination }) => {

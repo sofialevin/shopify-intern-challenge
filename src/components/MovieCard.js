@@ -20,6 +20,10 @@ const StyledCard = styled.div`
     box-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.16), 0 3px 6px 0 rgba(0, 0, 0, 0.12), 0 5px 12px 4px rgba(0, 0, 0, 0.09);
   };
   opacity: ${props => props.disabled ? '0.5' : '1'};
+  @media (max-width: 750px) {
+    width: 300px;
+    height: 450px;
+  }
 `;
 
 const StyledButton = styled.button`
@@ -27,9 +31,8 @@ const StyledButton = styled.button`
   border: none;
   position: absolute;
   cursor: pointer;
-  top: -15px;
+  top: -10px;
   right: -15px;
-  margin: 10px;
   font-size: 25px;
   color: ${props => props.nominated ? '#ffd43b' : 'white'};
 `;

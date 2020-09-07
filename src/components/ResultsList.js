@@ -10,7 +10,6 @@ const StyledSection = styled.section`
   margin-top: 15px;
   min-height: 320px;
   justify-content: center;
-  flex-direction: column;
   position: relative;
 `
 
