@@ -1,6 +1,8 @@
 # shopify-intern-challenge
 The Shoppies: Movie awards for entrepreneurs
 
+[Deployed Challenge](https://peaceful-jennings-d62215.netlify.app/)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
