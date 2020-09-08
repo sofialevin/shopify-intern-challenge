@@ -9,8 +9,7 @@ import Notification from './components/Notification';
 const AppContainer = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
+  min-height: 100%;
   padding: 20px;
   @media (max-width: 750px) {
     padding: 10px;
