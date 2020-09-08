@@ -13,7 +13,7 @@ const StyledModal = styled.div`
   overflow: auto;
   background-color: rgb(0,0,0);
   background-color: rgba(0,0,0,0.4);
-`
+`;
 
 const StyledContent = styled.div`
   background-color: #fefefe;
@@ -32,7 +32,7 @@ const StyledContent = styled.div`
     width: 80%;
     margin: 50% auto;
   }
-`
+`;
 
 const StyledIcon = styled(FontAwesomeIcon)`
   position: absolute;
@@ -41,15 +41,13 @@ const StyledIcon = styled(FontAwesomeIcon)`
   cursor: pointer;
 `;
 
-const Notification = ({ closeModal }) => {
-  return (
-    <StyledModal>
-      <StyledContent>
-        <StyledIcon icon={faTimes} onClick={() => closeModal()}/>
-        Thank you for your nominations!
-      </StyledContent>
-    </StyledModal>
-  );
-}
- 
+const Notification = ({ closeModal }) => (
+  <StyledModal>
+    <StyledContent>
+      <StyledIcon icon={faTimes} onClick={() => closeModal()} />
+      Thank you for your nominations!
+    </StyledContent>
+  </StyledModal>
+);
+
 export default Notification;
