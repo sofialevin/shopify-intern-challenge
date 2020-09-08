@@ -54,6 +54,9 @@ const StyledText = styled.div`
   position: absolute;
   bottom: 10px;
   z-index: 2;
+  p {
+    word-break: break-word;
+  }
 `;
 
 const StyledTitle = styled.p`
