@@ -45,6 +45,7 @@ const StyledButton = styled.button`
   font-size: 30px;
   z-index: 3;
   color: ${props => props.nominated ? '#ffd43b' : 'white'};
+  padding: 0;
   @media (max-width: 750px) {
     right: -42px;
     top: -14px;

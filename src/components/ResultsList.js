@@ -9,9 +9,11 @@ const StyledSection = styled.section`
   flex-wrap: wrap;
   margin: 16px 16px 0 16px;
   min-height: 320px;
+  max-height: 600px;
   justify-content: center;
   position: relative;
   justify-content: space-between;
+  flex-grow: 1;
 `
 
 const StyledEmptyState = styled.div`

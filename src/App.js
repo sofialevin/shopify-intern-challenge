@@ -7,6 +7,18 @@ import NominatedList from './components/NominatedList';
 import Notification from './components/Notification';
 
 const AppContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  padding: 20px;
+  @media (max-width: 750px) {
+    padding: 10px;
+  }
+`;
+
+const BorderContainer = styled.div`
+  flex-grow: 1;
   border: 3px solid ${Amber};
   margin: 0 20px;
   display: flex;
@@ -15,11 +27,11 @@ const AppContainer = styled.div`
   }
 `;
 
-const InnerAppContainer = styled.div`
-    border: 3px solid ${Amber};
-    width: calc(100% + 46px);
-    margin: 17px -23px;
-    padding: 10px 20px;
+const InnerBorderContainer = styled.div`
+  border: 3px solid ${Amber};
+  width: calc(100% + 46px);
+  margin: 17px -23px;
+  padding: 10px 20px;
 `;
 
 const Main = styled.div`
@@ -29,6 +41,9 @@ const Main = styled.div`
   width: 100%;
   z-index: 2;
   margin-top: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 `;
 
 const StyledH1 = styled.h1`
@@ -67,15 +82,17 @@ function App() {
 
   return (
     <AppContainer>
-      <InnerAppContainer>
-        <Main>
-          {showNotification ? <Notification closeModal={closeModal} /> : null}
-          <StyledH1>The Shoppies</StyledH1>
-          <Search handleResults={handleResults} handleMessage={handleMessage} />
-          <ResultsList handleNomination={handleNomination} results={results} nominatedIds={new Set(nominations.map((nomination) => nomination.imdbID))} message={message}/>
-          <NominatedList nominations={nominations} handleNomination={handleNomination} />
-        </Main>
-      </InnerAppContainer>
+      <BorderContainer>
+        <InnerBorderContainer>
+          <Main>
+            {showNotification ? <Notification closeModal={closeModal} /> : null}
+            <StyledH1>The Shoppies</StyledH1>
+            <Search handleResults={handleResults} handleMessage={handleMessage} />
+            <ResultsList handleNomination={handleNomination} results={results} nominatedIds={new Set(nominations.map((nomination) => nomination.imdbID))} message={message}/>
+            <NominatedList nominations={nominations} handleNomination={handleNomination} />
+          </Main>
+        </InnerBorderContainer>
+      </BorderContainer>
     </AppContainer>
   );
 }
