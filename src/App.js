@@ -92,6 +92,7 @@ function App() {
               results={results}
               nominatedIds={new Set(nominations.map((nomination) => nomination.imdbID))}
               message={message}
+              fullNominations={nominations.length === 5}
             />
             <NominatedList nominations={nominations} handleNomination={handleNomination} />
           </Main>

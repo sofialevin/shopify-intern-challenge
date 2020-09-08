@@ -58,7 +58,13 @@ const NominatedList = ({ nominations, handleNomination }) => (
           ))
         }
       {
-          [...Array(nominationSlots - nominations.length)].map((e, i) => <StyledEmptySlot key={i}>{i + nominations.length + 1}</StyledEmptySlot>)
+          [...Array(nominationSlots - nominations.length)].map((e, i) => (
+            <StyledEmptySlot
+              key={i}
+            >
+              {i + nominations.length + 1}
+            </StyledEmptySlot>
+          ))
         }
     </StyledDiv>
   </section>

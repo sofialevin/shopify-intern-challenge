@@ -66,7 +66,7 @@ const StyledButton = styled.button`
 `;
 
 const ResultsList = ({
-  results, handleNomination, nominatedIds, message,
+  results, handleNomination, nominatedIds, message, fullNominations,
 }) => {
   const [showAll, setShowAll] = useState(false);
   console.log(results)
@@ -84,6 +84,7 @@ const ResultsList = ({
                   movie={movie}
                   handleNomination={handleNomination}
                   disabled={nominatedIds.has(movie.imdbID)}
+                  fullNominations={fullNominations}
                 />
               ))
             }
