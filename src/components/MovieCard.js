@@ -39,16 +39,13 @@ const StyledButton = styled.button`
   border: none;
   position: absolute;
   cursor: ${(props) => (props.disabled ? 'default' : 'pointer')};
-  top: -10px;
-  right: -10px;
+  top: 2%;
+  right: 2%;
   font-size: 30px;
   z-index: 3;
   color: ${(props) => (props.isNominated ? '#ffd43b' : 'white')};
   padding: 0;
-  @media (max-width: 750px) {
-    right: -42px;
-    top: -14px;
-  }
+  filter: drop-shadow(16px 16px 10px black);
 `;
 
 const StyledText = styled.div`
