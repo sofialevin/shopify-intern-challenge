@@ -16,13 +16,13 @@ const StyledDiv = styled.div`
     height: 450px;
     }
   }
-`
+`;
 
 const StyledH2 = styled.h2`
   font-family: 'Poiret One', cursive;
   color: white;
   margin: 20px ${gutter}px;
-`
+`;
 
 const StyledEmptySlot = styled.div`
   height: 150px;
@@ -39,24 +39,28 @@ const StyledEmptySlot = styled.div`
   @media (max-width: 750px) {
     width: 140px;
     height: 210px;
-    /* margin: 5px 0; */
   }
-`
+`;
 
-const NominatedList = ({ nominations, handleNomination }) => {
-  return (
-    <section>
-      <StyledH2>Nominated Movies</StyledH2>
-      <StyledDiv>
-        {
-          nominations.map((movie) => <MovieCard key={movie.imdbID} movie={movie} handleNomination={handleNomination} nominated/>)
+const NominatedList = ({ nominations, handleNomination }) => (
+  <section>
+    <StyledH2>Nominated Movies</StyledH2>
+    <StyledDiv>
+      {
+          nominations.map((movie) => (
+            <MovieCard
+              key={movie.imdbID}
+              movie={movie}
+              handleNomination={handleNomination}
+              isNominated
+            />
+          ))
         }
-        {
+      {
           [...Array(nominationSlots - nominations.length)].map((e, i) => <StyledEmptySlot key={i}>{i + nominations.length + 1}</StyledEmptySlot>)
         }
-      </StyledDiv>
-    </section>
-  );
-}
- 
+    </StyledDiv>
+  </section>
+);
+
 export default NominatedList;

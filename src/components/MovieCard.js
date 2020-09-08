@@ -2,11 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAward } from '@fortawesome/free-solid-svg-icons';
-// import { cardWidth, gutter } from '../lib';
 
 const CardWrapper = styled.div`
-  position:relative;
-  float: left;
+  position: relative;
   width: 100px;
   height: 150px;
   margin: 5px;
@@ -20,7 +18,7 @@ const CardWrapper = styled.div`
   }
   :before {
     content: '';
-    position:absolute;
+    position: absolute;
     top:0;
     left: 0;
     right: 0;
@@ -32,7 +30,7 @@ const CardWrapper = styled.div`
 
 const StyledImage = styled.img`
   max-width: 100%;
-  max-height :100%;
+  max-height: 100%;
 `
 
 const StyledButton = styled.button`
@@ -41,10 +39,10 @@ const StyledButton = styled.button`
   position: absolute;
   cursor: ${props => props.disabled ? 'default' : 'pointer'};
   top: -10px;
-  right: -15px;
+  right: -10px;
   font-size: 30px;
   z-index: 3;
-  color: ${props => props.nominated ? '#ffd43b' : 'white'};
+  color: ${props => props.isNominated ? '#ffd43b' : 'white'};
   padding: 0;
   @media (max-width: 750px) {
     right: -42px;
@@ -73,11 +71,11 @@ const StyledYear = styled.p`
   color: white;
 `
 
-const MovieCard = ({ movie, handleNomination, nominated, disabled }) => {
+const MovieCard = ({ movie, handleNomination, isNominated, disabled }) => {
   return (
     <CardWrapper disabled={disabled}>
       <StyledImage src={movie.Poster} />
-      <StyledButton type="button" disabled={disabled} onClick={() => handleNomination(movie, nominated)} nominated={nominated}>
+      <StyledButton type="button" disabled={disabled} isNominated={isNominated} onClick={() => handleNomination(movie, isNominated)}>
         <FontAwesomeIcon icon={faAward} />
       </StyledButton>
       <StyledText>

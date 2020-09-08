@@ -54,7 +54,7 @@ const Search = ({ handleResults, handleMessage }) => {
           setSearching(false);
         })
         .catch(() => {
-          handleMessage('An unexpected error occured.')
+          handleMessage('An unexpected error occured.');
           setSearching(false);
         });
     }
@@ -79,8 +79,7 @@ const Search = ({ handleResults, handleMessage }) => {
         />
       </StyledSearchWrapper>
     </section>
-   
   );
-}
- 
+};
+
 export default Search;

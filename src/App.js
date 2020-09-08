@@ -31,7 +31,7 @@ const InnerBorderContainer = styled.div`
   border: 3px solid ${Amber};
   width: calc(100% + 46px);
   margin: 17px -23px;
-  padding: 10px 20px;
+  padding: 0 20px;
 `;
 
 const Main = styled.div`
@@ -40,7 +40,6 @@ const Main = styled.div`
   margin-left: auto;
   width: 100%;
   z-index: 2;
-  margin-top: 20px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -58,27 +57,27 @@ function App() {
   const [showNotification, setShowNotification] = useState(false);
   const [message, setMessage] = useState(null);
 
-  const handleResults = useCallback((results) => setResults(results), []);
+  const handleResults = useCallback((res) => setResults(res), []);
 
-  const handleMessage = useCallback((message) => setMessage(message), []);
+  const handleMessage = useCallback((res) => setMessage(res), []);
 
-  const handleNomination = (movie, nominated) => {
-    if (nominated) {
-      setNominations(nominations.filter((nomination) => nomination.imdbID !== movie.imdbID))
+  const handleNomination = (movie, isNominated) => {
+    if (isNominated) {
+      setNominations(nominations.filter((nomination) => nomination.imdbID !== movie.imdbID));
     } else if (nominations.length < 5) {
-      setNominations([...nominations, movie])
+      setNominations([...nominations, movie]);
     }
-  }
+  };
 
   const closeModal = () => {
     setShowNotification(false);
-  }
+  };
 
   useEffect(() => {
     if (nominations.length === 5) {
       setShowNotification(true);
     }
-  }, [nominations])
+  }, [nominations]);
 
   return (
     <AppContainer>
@@ -88,7 +87,12 @@ function App() {
             {showNotification ? <Notification closeModal={closeModal} /> : null}
             <StyledH1>The Shoppies</StyledH1>
             <Search handleResults={handleResults} handleMessage={handleMessage} />
-            <ResultsList handleNomination={handleNomination} results={results} nominatedIds={new Set(nominations.map((nomination) => nomination.imdbID))} message={message}/>
+            <ResultsList
+              handleNomination={handleNomination}
+              results={results}
+              nominatedIds={new Set(nominations.map((nomination) => nomination.imdbID))}
+              message={message}
+            />
             <NominatedList nominations={nominations} handleNomination={handleNomination} />
           </Main>
         </InnerBorderContainer>
