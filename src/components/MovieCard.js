@@ -72,9 +72,7 @@ const StyledYear = styled.p`
 
 const MovieCard = ({
   movie, handleNomination, isNominated, disabled, fullNominations,
-}) => {
-  console.log(fullNominations)
-  return (
+}) => (
   <CardWrapper disabled={disabled}>
     {movie.Poster !== 'N/A' ? <StyledImage src={movie.Poster} /> : null}
     <StyledButton type="button" fullNominations={fullNominations} disabled={disabled} isNominated={isNominated} onClick={() => handleNomination(movie, isNominated)}>
@@ -85,6 +83,6 @@ const MovieCard = ({
       <StyledYear>{movie.Year}</StyledYear>
     </StyledText>
   </CardWrapper>
-)};
+);
 
 export default MovieCard;
