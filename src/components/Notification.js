@@ -5,7 +5,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const StyledModal = styled.div`
   position: fixed;
-  z-index: 1;
+  z-index: 4;
   left: 0;
   top: 0;
   width: 100%;
@@ -20,6 +20,7 @@ const StyledContent = styled.div`
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
+  border-radius: 2px;
   width: 40%;
   height: 20%;
   display: flex;
