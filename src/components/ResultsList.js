@@ -69,7 +69,6 @@ const ResultsList = ({
   results, handleNomination, nominatedIds, message, fullNominations,
 }) => {
   const [showAll, setShowAll] = useState(false);
-  console.log(results)
   return (
     <StyledSection showAll={showAll}>
       {message && <StyledMessage>{message}</StyledMessage>}

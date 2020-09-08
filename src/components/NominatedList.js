@@ -7,7 +7,7 @@ const StyledDiv = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: ${gutter}px 0;
+  margin-top: ${gutter}px;
   padding-bottom: 20px;
   @media (max-width: 750px) {
     margin: 0 calc((100% - 300px) / 2);
