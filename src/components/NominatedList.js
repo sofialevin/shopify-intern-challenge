@@ -10,10 +10,10 @@ const StyledDiv = styled.div`
   margin-top: ${gutter}px;
   padding-bottom: 20px;
   @media (max-width: 750px) {
-    margin: 0 calc((100% - 300px) / 2);
+    margin: 0 calc((100% - (100vw - 100px)) / 2);
     div:first-child {
-    width: 300px;
-    height: 450px;
+      width: calc(100vw - 100px);
+      height: calc((100vw - 100px) * 1.5);
     }
   }
 `;
@@ -37,8 +37,8 @@ const StyledEmptySlot = styled.div`
   font-size: 40px;
   font-family: 'Poiret One', cursive;
   @media (max-width: 750px) {
-    width: 140px;
-    height: 210px;
+    width: calc((100vw - 100px) / 2 - 5px);
+    height: calc(((100vw - 100px) / 2 - 5px) * 1.5);
     margin: 5px 0;
   }
 `;
