@@ -53,7 +53,8 @@ const Search = ({ handleResults, handleMessage }) => {
           }
           setSearching(false);
         })
-        .catch(() => {
+        .catch((err) => {
+          console.log(err)
           handleMessage('An unexpected error occured.');
           setSearching(false);
         });
