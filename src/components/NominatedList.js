@@ -1,12 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 import MovieCard from './MovieCard';
-import { cardWidth, gutter, MediumBlue, nominationSlots } from '../lib';
+import { gutter, MediumBlue, nominationSlots } from '../lib';
 
 const StyledDiv = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
+  margin: 16px 16px 0 16px;
+  @media (max-width: 750px) {
+    div:first-child {
+    width: 300px;
+    height: 450px;
+  }
+  }
 `
 
 const StyledH2 = styled.h2`
@@ -17,24 +24,20 @@ const StyledH2 = styled.h2`
 
 const StyledEmptySlot = styled.div`
   height: 150px;
-  width: ${cardWidth}px;
+  width: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   background-color: ${MediumBlue};
-  margin: 5px ${gutter}px;
+  margin: 5px;
   border-radius: 2px;
   font-size: 40px;
   font-family: 'Poiret One', cursive;
   @media (max-width: 750px) {
-    width: 145px;
-    height: 225px;
-    margin: 5px;
-    :first-child {
-      width: 300px;
-      height: 450px;
-    }
+    width: 140px;
+    height: 210px;
+    margin: 5px 0;
   }
 `
 

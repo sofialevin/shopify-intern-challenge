@@ -8,39 +8,18 @@ import Notification from './components/Notification';
 
 const AppContainer = styled.div`
   border: 3px solid ${Amber};
-  margin: 20px 40px;
-  height: 100%;
+  margin: 0 20px;
   display: flex;
   @media (max-width: 750px) {
     text-align: center
   }
-  @media (min-width: 768px) and (max-height: 520px) {
-    /* justify-content: flex-start; */
-  }
-  /* &:after {
-    content: "";
-    margin: 20px;
-    border: 3px solid ${Amber};
-    display: block;
-    position: absolute;
-    top: 20px;
-    left: 0;
-    right: 0;
-    bottom: 20px;
-    height: 100%;
-  }
-  @media (max-width: 750px) {
-    text-align: center
-  } */
 `;
 
-const AppContainer2 = styled.div`
-    margin: 20px;
+const InnerAppContainer = styled.div`
     border: 3px solid ${Amber};
-    width: calc(100% + 60px);
-    height: 100%;
-    margin-left: -30px;
-    margin-right: -30px;
+    width: calc(100% + 46px);
+    margin: 17px -23px;
+    padding: 10px 20px;
 `;
 
 const Main = styled.div`
@@ -85,15 +64,15 @@ function App() {
 
   return (
     <AppContainer>
-      <AppContainer2>
-      <Main>
-        {showNotification ? <Notification /> : null}
-        <StyledH1>The Shoppies</StyledH1>
-        <Search handleResults={handleResults} handleMessage={handleMessage} />
-        <ResultsList handleNomination={handleNomination} results={results} nominatedIds={new Set(nominations.map((nomination) => nomination.imdbID))} message={message}/>
-        <NominatedList nominations={nominations} handleNomination={handleNomination} />
-      </Main>
-      </AppContainer2>
+      <InnerAppContainer>
+        <Main>
+          {showNotification ? <Notification /> : null}
+          <StyledH1>The Shoppies</StyledH1>
+          <Search handleResults={handleResults} handleMessage={handleMessage} />
+          <ResultsList handleNomination={handleNomination} results={results} nominatedIds={new Set(nominations.map((nomination) => nomination.imdbID))} message={message}/>
+          <NominatedList nominations={nominations} handleNomination={handleNomination} />
+        </Main>
+      </InnerAppContainer>
     </AppContainer>
   );
 }

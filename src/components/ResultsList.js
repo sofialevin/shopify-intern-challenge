@@ -7,10 +7,11 @@ import { faFilm } from '@fortawesome/free-solid-svg-icons';
 const StyledSection = styled.section`
   display: flex;
   flex-wrap: wrap;
-  margin-top: 15px;
+  margin: 16px 16px 0 16px;
   min-height: 320px;
   justify-content: center;
   position: relative;
+  justify-content: space-between;
 `
 
 const StyledEmptyState = styled.div`
@@ -21,6 +22,7 @@ const StyledEmptyState = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  width: 100%;
 `
 
 const StyledMessage = styled.p`
