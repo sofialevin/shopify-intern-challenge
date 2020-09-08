@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAward } from '@fortawesome/free-solid-svg-icons';
-import { cardWidth, gutter } from '../lib';
+// import { cardWidth, gutter } from '../lib';
 
 const CardWrapper = styled.div`
   position:relative;
