@@ -55,10 +55,13 @@ function App() {
     }
   }
 
+  const closeModal = () => {
+    setShowNotification(false);
+  }
+
   useEffect(() => {
     if (nominations.length === 5) {
       setShowNotification(true);
-      setTimeout(() => setShowNotification(false), 3000);
     }
   }, [nominations])
 
@@ -66,7 +69,7 @@ function App() {
     <AppContainer>
       <InnerAppContainer>
         <Main>
-          {showNotification ? <Notification /> : null}
+          {showNotification ? <Notification closeModal={closeModal} /> : null}
           <StyledH1>The Shoppies</StyledH1>
           <Search handleResults={handleResults} handleMessage={handleMessage} />
           <ResultsList handleNomination={handleNomination} results={results} nominatedIds={new Set(nominations.map((nomination) => nomination.imdbID))} message={message}/>

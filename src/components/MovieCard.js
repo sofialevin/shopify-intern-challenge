@@ -39,13 +39,15 @@ const StyledButton = styled.button`
   background-color: transparent;
   border: none;
   position: absolute;
-  cursor: pointer;
+  cursor: ${props => props.disabled ? 'default' : 'pointer'};
   top: -10px;
   right: -15px;
-  font-size: 25px;
+  font-size: 30px;
+  z-index: 3;
   color: ${props => props.nominated ? '#ffd43b' : 'white'};
   @media (max-width: 750px) {
-    right: -35px;
+    right: -42px;
+    top: -14px;
   }
 `;
 
@@ -73,16 +75,14 @@ const StyledYear = styled.p`
 const MovieCard = ({ movie, handleNomination, nominated, disabled }) => {
   return (
     <CardWrapper disabled={disabled}>
-    {/* // <StyledCard url={movie.Poster} nominated={nominated}  > */}
       <StyledImage src={movie.Poster} />
-      <StyledButton type="button" onClick={() => handleNomination(movie, nominated)} nominated={nominated}>
+      <StyledButton type="button" disabled={disabled} onClick={() => handleNomination(movie, nominated)} nominated={nominated}>
         <FontAwesomeIcon icon={faAward} />
       </StyledButton>
       <StyledText>
         <StyledTitle>{movie.Title}</StyledTitle>
         <StyledYear>{movie.Year}</StyledYear>
       </StyledText>
-    {/* // </StyledCard> */}
     </CardWrapper>
   );
 }
